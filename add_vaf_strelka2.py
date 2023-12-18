@@ -99,7 +99,7 @@ def parse_vcf(file_path: str, variant_type: str) -> list[str]:
     mod_vcf = header_lines + main_header_line + variant_lines
     return mod_vcf
 
-def write_vcf(lines_ls: List[str], output_path: str) -> IO:
+def write_vcf(lines_ls: list[str], output_path: str) -> IO:
     """
     Write modified VCF lines to an output file.
 
