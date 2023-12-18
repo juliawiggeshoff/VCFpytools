@@ -9,9 +9,9 @@ This script merges the headers of multiple VCF files.
 
 import argparse
 import gzip
-import typing
+from typing import IO
 
-def parse_vcf_header(file_path: str) -> typing.List[str]:
+def parse_vcf_header(file_path: str) -> list[str]:
     """
     Parse the header of a VCF file and return a list of header lines.
 
@@ -37,7 +37,7 @@ def parse_vcf_header(file_path: str) -> typing.List[str]:
                     break
     return header
 
-def merge_vcf_headers(vcf_files: List[str], output_file: str, include_others: bool = False) -> typing.IO:
+def merge_vcf_headers(vcf_files: List[str], output_file: str, include_others: bool = False) -> IO:
     """
     Merge headers of multiple VCF files and write to an output file.
 
