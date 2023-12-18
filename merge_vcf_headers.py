@@ -37,7 +37,7 @@ def parse_vcf_header(file_path: str) -> list[str]:
                     break
     return header
 
-def merge_vcf_headers(vcf_files: List[str], output_file: str, include_others: bool = False) -> IO:
+def merge_vcf_headers(vcf_files: list[str], output_file: str, include_others = None) -> IO:
     """
     Merge headers of multiple VCF files and write to an output file.
 
@@ -84,7 +84,7 @@ def merge_vcf_headers(vcf_files: List[str], output_file: str, include_others: bo
         merged_header.extend(header_collections[key])
 
     # Add other headers that start with ##
-    if include_others:
+    if include_others is True:
         merged_header.extend(other_headers)
 
     # Write the merged header to the output file
@@ -102,4 +102,7 @@ if __name__ == "__main__":
 
     output_file = args.output if args.output else "merged_headers.txt"
 
-    merge_vcf_headers(args.vcfs, output_file, args.fullheader)
+    if args.fullheader:        
+        merge_vcf_headers(args.vcfs, output_file, True)
+    else:
+        merge_vcf_headers(args.vcfs, output_file)
